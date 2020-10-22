@@ -16,7 +16,7 @@ import (
 func main() {
 
 	tiles_source := "/path/to/folder/containing/mbtiles/"
-	tiles_extenion := ".db"
+	tiles_extension := ".db"
 	tiles_path := "/tiles"
 	tiles_pattern := `/tiles/([a-z-]+)/(\d+)/(\d+)/(\d+)\.([a-z]+)$`
 	
@@ -24,6 +24,7 @@ func main() {
 
 	tiles_opts := &mbtiles.MBTilesHandlerOptions{
 		Root:         tiles_source,
+		Extension:    ties_extension,
 		TilesPattern: tiles_re,
 	}
 
