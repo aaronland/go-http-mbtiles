@@ -25,7 +25,7 @@ func main() {
 	tiles_opts := &mbtiles.MBTilesHandlerOptions{
 		Root:         tiles_source,
 		Extension:    ties_extension,
-		TilesPattern: tiles_re,
+		Pattern: tiles_re,
 	}
 
 	tiles_handler, _ := mbtiles.MBTilesHandler(tiles_opts)

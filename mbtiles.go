@@ -15,9 +15,9 @@ import (
 )
 
 type MBTilesHandlerOptions struct {
-	Root         string
-	Extension    string
-	TilesPattern *regexp.Regexp
+	Root      string
+	Extension string
+	Pattern   *regexp.Regexp
 }
 
 func MBTilesHandler(opts *MBTilesHandlerOptions) (http.Handler, error) {
@@ -30,7 +30,7 @@ func MBTilesHandler(opts *MBTilesHandlerOptions) (http.Handler, error) {
 		ctx := req.Context()
 		path := req.URL.Path
 
-		m := opts.TilesPattern.FindStringSubmatch(path)
+		m := opts.Pattern.FindStringSubmatch(path)
 
 		if len(m) != 6 {
 			http.Error(rsp, "Invalid tile URI", http.StatusBadRequest)
