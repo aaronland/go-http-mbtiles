@@ -16,15 +16,15 @@ import (
 func main() {
 
 	tiles_source := "/path/to/folder/containing/mbtiles/"
+	tiles_pattern := `/tiles/([a-z-]+)/(\d+)/(\d+)/(\d+)\.([a-z]+)$`	
 	tiles_extension := ".db"
 	tiles_path := "/tiles"
-	tiles_pattern := `/tiles/([a-z-]+)/(\d+)/(\d+)/(\d+)\.([a-z]+)$`
 	
 	tiles_re, _ := regexp.Compile(tiles_pattern)
 
 	tiles_opts := &mbtiles.MBTilesHandlerOptions{
 		Root:         tiles_source,
-		Extension:    ties_extension,
+		Extension:    tiles_extension,
 		Pattern: tiles_re,
 	}
 
