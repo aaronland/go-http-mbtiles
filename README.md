@@ -41,7 +41,7 @@ _Error handling omitted for brevity._
 ## Tools
 
 ```
-> make cli
+$> make cli
 go build -mod vendor -o bin/server cmd/server/main.go
 ```
 
@@ -60,6 +60,17 @@ $> ./bin/server -h
   -tiles-source string
     	Path to the directory containing your MBTiles databases.
 ```	
+
+For example:
+
+```
+$> ./bin/server -tiles-source /usr/local/mbtiles/
+2020/10/21 21:53:00 Listening on http://localhost:8080
+```
+
+#### Lambda
+
+_Please write me._
 
 ## See also
 
