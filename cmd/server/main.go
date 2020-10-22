@@ -15,9 +15,10 @@ func main() {
 	fs := flagset.NewFlagSet("prettymaps")
 
 	server_uri := fs.String("server-uri", "http://localhost:8080", "A valid aaronland/go-http-server URI string.")
-	tiles_source := fs.String("tiles-source", "", "...")
-	tiles_path := fs.String("tiles-path", "/tiles/", "...")
-	tiles_pattern := fs.String("tiles-pattern", `/tiles/([a-z-]+)/(\d+)/(\d+)/(\d+)\.([a-z]+)$`, "...")
+	tiles_source := fs.String("tiles-source", "", "Path to the directory containing your MBTiles databases.")
+	tiles_extension := fs.String("tiles-extension", ".mbtiles", "The extension (minus the leading dot) for your MBTiles databases.")
+	tiles_path := fs.String("tiles-path", "/tiles/", "The relative path to serve tiles from.")
+	tiles_pattern := fs.String("tiles-pattern", `/tiles/([a-z-]+)/(\d+)/(\d+)/(\d+)\.([a-z]+)$`, "A valid Go language regular expression for validating requests. The pattern needs to return five values: name of the MBTiles file, Z, X and Y tile values and a file extension used to determine content type.")
 
 	flagset.Parse(fs)
 
@@ -37,6 +38,7 @@ func main() {
 
 	tiles_opts := &mbtiles.MBTilesHandlerOptions{
 		Root:         *tiles_source,
+		Extension:    *tiles_extension,
 		TilesPattern: tiles_re,
 	}
 

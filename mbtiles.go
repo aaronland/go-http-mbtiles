@@ -10,11 +10,13 @@ import (
 	"path/filepath"
 	"regexp"
 	"strconv"
+	"strings"
 	"sync"
 )
 
 type MBTilesHandlerOptions struct {
 	Root         string
+	Extension    string
 	TilesPattern *regexp.Regexp
 }
 
@@ -79,7 +81,9 @@ func MBTilesHandler(opts *MBTilesHandlerOptions) (http.Handler, error) {
 
 		if !ok {
 
-			db_fname := fmt.Sprintf("%s.mbtiles", tileset)
+			ext := strings.TrimPrefix(opts.Extension, ".")
+
+			db_fname := fmt.Sprintf("%s.%s", tileset, ext)
 			db_path := filepath.Join(opts.Root, db_fname)
 
 			db_dsn := fmt.Sprintf("file:%s?cache=shared&mode=ro", db_path)
